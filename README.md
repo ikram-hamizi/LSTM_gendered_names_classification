@@ -4,6 +4,7 @@ Advanced Machine Learning - Innopolis University (Spring2021)
 The libraries can be installed using **pip install -r requirements.txt**
 
 The Structure of the repository 
+```bash
 ├── data                     <- Data files directory
 │   └── Data1                <- Dataset 1 directory
 │
@@ -21,6 +22,7 @@ The Structure of the repository
 │
 ├── requirements.txt                            
 └── README.md     
+```
 
 
 Homework 1 Link: https://hackmd.io/@gFZmdMTOQxGFHEFqqU8pMQ/Bk4V79k4u
