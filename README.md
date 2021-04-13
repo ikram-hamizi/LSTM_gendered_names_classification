@@ -2,7 +2,7 @@
 Advanced Machine Learning - Innopolis University (Spring2021)
 
 The libraries can be installed using **pip install -r requirements.txt**
-The project can be tested on **Git Actions** but running the workflow defined in ```bash setup.yml```.
+The project can be tested on **Git Actions** but running the workflow defined in ```setup.yml```.
 
 The Structure of the repository 
 ```bash
