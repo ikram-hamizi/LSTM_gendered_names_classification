@@ -1,0 +1,10 @@
+File-1: train_eng.csv 
+File-2: test_eng.csv
+
+Both are .csv files with two columns: One feature "Name" and one binary label "Gender" following this format:
+Name,Gender
+Terrone,M
+Annaley,F
+
+Shape: train  (83288, 2)
+Shape: test   (20822, 2)
