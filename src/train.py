@@ -185,7 +185,7 @@ model2.add(Dense(160, activation='relu'))
 model2.add(Dense(192, activation='relu'))
 model2.add(Dense(1, activation='sigmoid'))
 
-#best lr from hypertuning was: 0.001
+#best lr from hyperparameter tuning was: 0.001
 model2.compile(optimizer=Adam(0.001), loss='BinaryCrossentropy', metrics=["accuracy"])
 
 classic_fwd_start = time.time()
@@ -219,7 +219,7 @@ model3.add(Dense(96, activation='relu'))
 model3.add(Dense(224, activation='relu'))
 model1.add(Dense(1, activation='sigmoid'))
 
-#best lr from hypertuning was: 1e-2
+#best lr from hyperparameter tuning was: 1e-2
 model3.compile(optimizer=Adam(1e-2), loss='BinaryCrossentropy', metrics=["accuracy"])
 
 custom_lstm_start = time.time()
