@@ -1,6 +1,12 @@
+#local classes
 from context import scripts
 import scripts
-from scripts.load_GENDER import get_data
+from scripts.dataExtract import get_data
+from scripts.preprocess import data_to_matrix
+
+#python libraries
+import pandas as pd
+import numpy as np
 
 #Load data
 train, _ = get_data() #csv english
@@ -10,11 +16,28 @@ train, _ = get_data() #csv english
 s = train.Name.str.len().sort_values().index #Int64Index
 train = train.reindex(s)
 
+x_train = train['Name']
+y_train = train['Gender'].values.tolist()
+
+from sklearn.preprocessing import LabelEncoder
+#Encode labels with integer representations
+label_encoder = LabelEncoder()
+y_train = np.array(label_encoder.fit_transform(y_train))
+
+
 # A. Creating a vocabulary index
 train_np = train.to_numpy()
 unique = list(set("".join(train_np[:,0])))
 unique.sort() #len(unique) = 52 (26 lower + 26 UPPER)
 vocab = dict(zip(unique, range(1,len(unique)+1))) #character:index
+
+# Get Matrix of vector representation of names
+total_train = len(train) #83288
+total_vocab = len(unique)+2 #52+2
+vocab_size = len(vocab) #52
+name_maxlen = 15
+
+matrix_train_x = data_to_matrix(x_train, total_train, vocab, name_maxlen):
 
 # B. Load pretrained char embeddings (GloVe)
 #Usage: https://keras.io/examples/nlp/pretrained_word_embeddings/
@@ -35,13 +58,9 @@ for line in f:
 embedding_dim = list(embedding_vectors.values())[0].shape[0]
 # print("Embedding Vector size =", embedding_dim)
 
-# B.2. Prepare a matrix to be used in the model
-total_vocab = len(unique)+2
-total_test = len(test)
-vocab_size = len(vocab) #52
+# B.2. Prepare an embedding matrix to be used in the model
 hits = 0
 misses = 0
-name_maxlen = 15
 
 embedding_matrix_train_x = np.zeros((total_vocab, embedding_dim))  
 for char, value in vocab.items():
@@ -53,7 +72,7 @@ for char, value in vocab.items():
 		misses+=1
 
 		print("(Embeddings) Converted %d chars (%d misses)" % (hits, misses))
-
+		
 # B.3. Apply PCA to reduce n_components from 300 to 50
 from sklearn.decomposition import PCA
 pca = PCA(n_components=50).fit(embedding_matrix_train_x)
