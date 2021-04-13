@@ -1,14 +1,15 @@
 #local classes
 import sys
-sys.path.append("./scripts")
-import scripts
+# sys.path.append("./scripts")
+import scripts.dataExtract as dataExtract
+import scripts.preprocess.data_to_matrix as data_to_matrix
 
 #python libraries
 import pandas as pd
 import numpy as np
 
 #Load data
-train, _ = scripts.dataExtract.get_data() #csv english
+train, _ = dataExtract.get_data() #csv english
 
 #Preprocess data
 #Sort names by length before creating mini-batches to help the model to learn shorter sequences first.
@@ -36,7 +37,7 @@ total_vocab = len(unique)+2 #52+2
 vocab_size = len(vocab) #52
 name_maxlen = 15
 
-matrix_train_x = scripts.preprocess.data_to_matrix(x_train, total_train, vocab, name_maxlen)
+matrix_train_x = data_to_matrix(x_train, total_train, vocab, name_maxlen)
 
 # B. Load pretrained char embeddings (GloVe)
 #Usage: https://keras.io/examples/nlp/pretrained_word_embeddings/
