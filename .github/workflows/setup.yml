@@ -1,5 +1,5 @@
 #Comments copied from: https://github.com/Gci04/AML-DS-2021/blob/main/.github/workflows/setup.yml
-name: environment-set-up
+name: Environment set-up and NN models test
 
 on: [push]
 
