@@ -20,3 +20,6 @@ def data_to_matrix(names, matrix_size, vocab, name_maxlen):
     matrix[i] = name_to_vector(name, vocab, name_maxlen)
     
   return matrix
+
+if __name__ == '__main__':
+	pass
