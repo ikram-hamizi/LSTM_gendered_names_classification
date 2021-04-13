@@ -38,7 +38,7 @@ total_vocab = len(unique)+2 #52+2
 vocab_size = len(vocab) #52
 name_maxlen = 15
 
-matrix_train_y = data_to_matrix(x_test, total_test, vocab, name_maxlen):
+matrix_train_y = data_to_matrix(x_test, total_test, vocab, name_maxlen)
 
 
 model1 = load_model('baselneLSTM.h5')
