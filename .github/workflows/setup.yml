@@ -32,9 +32,9 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
     
-    - name: Run train
-      run: |
-        python src/train.py
-    - name: Run test
-      run: |
-        python src/test.py
+    - name: Train Model
+      working-directory: ./src
+      run: python train.py 
+    - name: Test Model
+      working-directory: ./src
+      run: python test.py 
