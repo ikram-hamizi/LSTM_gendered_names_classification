@@ -11,3 +11,6 @@ def get_data(path="../data/", lang="eng"):
 	test = pd.read_csv(test_path) if lang == "eng" else pd.read_csv("test_rus.csv")
 
 	return train, test
+
+if __name__ == '__main__':
+	pass
