@@ -41,7 +41,10 @@ matrix_train_x = data_to_matrix(x_train, total_train, vocab, name_maxlen)
 
 # B. Load pretrained char embeddings (GloVe)
 #Usage: https://keras.io/examples/nlp/pretrained_word_embeddings/
-!wget https://raw.githubusercontent.com/minimaxir/char-embeddings/master/glove.840B.300d-char.txt
+# !wget https://raw.githubusercontent.com/minimaxir/char-embeddings/master/glove.840B.300d-char.txt
+import wget
+url = "https://raw.githubusercontent.com/minimaxir/char-embeddings/master/glove.840B.300d-char.txt"
+wget.download(url)
 
 # B.1. Make a dict mapping GloVe chars to their NumPy vector representation
 path_to_glove_file = "glove.840B.300d-char.txt"
