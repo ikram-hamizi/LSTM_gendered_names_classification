@@ -2,9 +2,10 @@
 Advanced Machine Learning - Innopolis University (Spring2021)
 
 The libraries can be installed using **pip install -r requirements.txt**
+
 The project can be tested on **Git Actions** but running the workflow defined in ```setup.yml```.
 
-The Structure of the repository 
+#### The Structure of the repository 
 ```bash
 ├── data                     <- Data files directory
 │   └── Data1                <- Dataset 1 directory
@@ -27,4 +28,5 @@ The Structure of the repository
 
 
 Homework 1 Link: https://hackmd.io/@gFZmdMTOQxGFHEFqqU8pMQ/Bk4V79k4u
+
 The task is to use deep learning, particularly LSTM (long-short term memory) models, to classify names based on their generally corresponding binary genders. Two models are compared to a Baseline LSTM: a Feed-forward Neural Network and a custom LSTM after hyperparameter tuning.
