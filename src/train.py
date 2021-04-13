@@ -49,17 +49,23 @@ wget.download(url)
 # B.1. Make a dict mapping GloVe chars to their NumPy vector representation
 path_to_glove_file = "glove.840B.300d-char.txt"
 
+#https://keras.io/examples/nlp/pretrained_word_embeddings/
+
+# 1. Make a dict mapping GloVe chars to their NumPy vector representation
+path_to_glove_file = "glove.840B.300d-char.txt"
+
 embedding_vectors = {}
 with open(path_to_glove_file, 'r') as f:
-for line in f:
-	line_array = line.strip().split(" ")
-	vector = np.array(line_array[1:], dtype=float)
-		char = line_array[0]
-		embedding_vectors[char] = vector
-# print("Found %s char vectors.", len(embedding_vectors))
+    for line in f:
+        line_array = line.strip().split(" ")
+        vector = np.array(line_array[1:], dtype=float)
+        char = line_array[0]
+        embedding_vectors[char] = vector
+
+print("Found %s char vectors.", len(embedding_vectors))
 
 embedding_dim = list(embedding_vectors.values())[0].shape[0]
-# print("Embedding Vector size =", embedding_dim)
+print("Embedding Vector size =", embedding_dim)
 
 # B.2. Prepare an embedding matrix to be used in the model
 hits = 0
