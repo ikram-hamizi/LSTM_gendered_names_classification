@@ -1,6 +1,4 @@
 #local classes
-from context import scripts
-import scripts
 from scripts.dataExtract import get_data
 from scripts.preprocess import data_to_matrix
 
