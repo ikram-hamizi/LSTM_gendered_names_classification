@@ -1,6 +1,7 @@
 #local classes
-from scripts.dataExtract import get_data
-from scripts.preprocess import data_to_matrix
+import sys
+sys.path.append("./scripts")
+import scripts
 
 #python libraries
 import pandas as pd
@@ -8,7 +9,7 @@ import numpy as np
 from keras.models import load_model
 
 #Load data
-train, test = get_data() #csv english
+train, test = scripts.dataExtract.get_data() #csv english
 
 x_test = test['Name']
 y_test = test['Gender'].values.tolist() 
@@ -36,7 +37,7 @@ total_vocab = len(unique)+2 #52+2
 vocab_size = len(vocab) #52
 name_maxlen = 15
 
-matrix_train_y = data_to_matrix(x_test, total_test, vocab, name_maxlen)
+matrix_train_y = scripts.preprocess.data_to_matrix(x_test, total_test, vocab, name_maxlen)
 
 
 model1 = load_model('baselneLSTM.h5')
