@@ -198,6 +198,7 @@ model3.add(embedding_layer)
 model3.add(LSTM(30))
 model3.add(Dense(96, activation='relu'))
 model3.add(Dense(224, activation='relu'))
+model1.add(Dense(1, activation='sigmoid'))
 
 #best lr from hypertuning was: 1e-2
 model3.compile(optimizer=Adam(1e-2), loss='BinaryCrossentropy', metrics=["accuracy"])
