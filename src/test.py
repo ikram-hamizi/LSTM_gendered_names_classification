@@ -21,6 +21,7 @@ y_test = test['Gender'].values.tolist()
 #Preprocess data
 #Encode labels with integer representations
 from sklearn.preprocessing import LabelEncoder
+label_encoder = LabelEncoder()
 
 # intermediate step: get label encodings from training set labels
 # Sort names by length before creating mini-batches to help the model to learn shorter sequences first.
