@@ -11,7 +11,7 @@ The project can be tested on **Git Actions** but running the workflow defined in
 │   └── Data1                <- Dataset 1 directory
 │
 ├── notebooks                <- Notebooks for analysis and testing
-│   └── eda                  <- EDA Notebook directory
+│   └── notebook             <- EDA, hyperparameter tuning, model training..
 │  
 │
 ├── scripts                  <- Standalone scripts
