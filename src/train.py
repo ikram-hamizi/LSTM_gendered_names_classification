@@ -92,8 +92,8 @@ embedding_matrix_train_x_pca = np.array(pca.transform(embedding_matrix_train_x))
 
 
 # B.4. Initialize pretrained embedding layer
-from tensorflow.keras.layers import Embedding
 from keras.initializers import Constant
+from keras.layers import Embedding
 
 embedding_layer = Embedding(
     input_dim=embedding_matrix_train_x_pca.shape[0],  #len(train)+2 = 83290
@@ -105,7 +105,7 @@ embedding_layer = Embedding(
 
 
 #C. Building and Training the models (with the best hyperparameters)
-from keras.layers import LSTM, Dense, Dropout
+from keras.layers import LSTM, Dense, Dropout, Flatten
 from keras import Sequential
 from keras.optimizers import Adam
 from keras.losses import BinaryCrossentropy
