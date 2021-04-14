@@ -5,6 +5,7 @@ import context
 import scripts
 import scripts.dataExtract as dataExtract
 import scripts.preprocess as preprocess
+from scripts.charVocab import get_vocab
 
 #python libraries
 import pandas as pd
@@ -28,15 +29,12 @@ y_train = np.array(label_encoder.fit_transform(y_train))
 
 
 # A. Creating a vocabulary index
-train_np = train.to_numpy()
-unique = list(set("".join(train_np[:,0])))
-unique.sort() #len(unique) = 52 (26 lower + 26 UPPER)
-vocab = dict(zip(unique, range(1,len(unique)+1))) #character:index
+vocab = get_vocab(train) #Index (character:int)
 
 # Get Matrix of vector representation of names:
 # Convert the list-of-names data to NumPy arrays of integer indices to be fed to the models. The arrays are post-padded.
 total_train = len(train) #83288
-total_vocab = len(unique)+2 #52+2
+total_vocab = len(vocab)+2 #52+2
 vocab_size = len(vocab) #52
 name_maxlen = 15
 
