@@ -103,7 +103,7 @@ embedding_layer = Embedding(
 
 
 #C. Building and Training the models (with the best hyperparameters)
-from keras.layers import LSTM, Dense, Dropout, GlobalMaxPooling1D #Flatten
+from keras.layers import LSTM, Dense, Dropout, Flatten, GlobalMaxPooling1D
 from keras import Sequential
 from keras.optimizers import Adam
 from keras.losses import BinaryCrossentropy
@@ -174,13 +174,19 @@ model1.save("baselneLSTM.h5")
 # time_string = time.strftime("%d%m@%H:%M", named_tuple)
 # MODEL_NAME = "custom_LSTM_{}".format(time_string)
 # tensorboard = TensorBoard(log_dir='log/{}'.format(MODEL_NAME))
+
+# Define input length for Flatten() layer
+embedding_layer_flatten = Embedding(
+    input_dim=embedding_matrix_train_x_pca.shape[0],  #len(train)+2 = 83290
+    output_dim=embedding_matrix_train_x_pca.shape[1], #embedding_dim = 300
+    embeddings_initializer=Constant(embedding_matrix_train_x_pca),
+    trainable=False,
+    input_length = 15 #<<<<<<<< must be defined for Flatten() Layer
+)
 model2 = Sequential()
-model2.add(embedding_layer)
-model2.add(GlobalMaxPooling1D())
-model2.add(Dense(160, activation='relu'))
-model2.add(Dense(192, activation='relu'))
-model2.add(Dense(160, activation='relu'))
-model2.add(Dense(192, activation='relu'))
+model2.add(embedding_layer_flatten)
+model2.add(Flatten())
+model2.add(Dense(96, activation='relu'))
 model2.add(Dense(1, activation='sigmoid'))
 
 #best lr from hyperparameter tuning was: 0.001
