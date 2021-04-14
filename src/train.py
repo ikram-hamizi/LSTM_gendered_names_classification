@@ -1,6 +1,7 @@
 #local classes
-import sys
-sys.path.append("../scripts")
+# import sys
+# sys.path.append("../scripts")
+import context
 import scripts
 import scripts.dataExtract as dataExtract
 import scripts.preprocess as preprocess
