@@ -5,6 +5,8 @@ import context
 import scripts
 import scripts.dataExtract as dataExtract
 import scripts.preprocess as preprocess
+from scripts.charVocab import get_vocab
+
 
 #python libraries
 import pandas as pd
@@ -23,20 +25,24 @@ y_test = test['Gender'].values.tolist()
 from sklearn.preprocessing import LabelEncoder
 label_encoder = LabelEncoder()
 
-# Intermediate step: get label encodings from training set labels
+## Intermediate step: get label encodings from training set labels
 # a. Sort names in training set by length (like train.py)
 s = train.Name.str.len().sort_values().index #Int64Index
 train = train.reindex(s)
 y_train = train['Gender'].values.tolist()
+
 # b. fit encoder to training set and transform testing set
 y_train = np.array(label_encoder.fit_transform(y_train))
 y_test = np.array(label_encoder.transform(y_test))
 
+# Creating a vocabulary index from train
+# A. Creating a vocabulary index
+vocab = get_vocab(train) #Index (character:int)
 
 # Get Matrix of vector representation of names
 total_test = len(test) #83288
-total_vocab = len(unique)+2 #52+2
-vocab_size = len(vocab) #52
+total_vocab = len(vocab)+2 #52+2
+vocab_size = len(vocab)+2#52
 name_maxlen = 15
 
 matrix_train_y = preprocess.data_to_matrix(x_test, total_test, vocab, name_maxlen)
