@@ -225,7 +225,7 @@ model3.compile(optimizer=Adam(1e-2), loss='BinaryCrossentropy', metrics=["accura
 custom_lstm_start = time.time()
 history_best_custom = model3.fit(matrix_train_x, y_train,
           epochs=100,  batch_size=32, validation_split=0.2,
-          verbose=2, callbacks=callbacks+[tensorboard])
+          verbose=2, callbacks=callbacks)#+[tensorboard])
 custom_lstm_end = time.time()
 
 custom_lstm_time = custom_lstm_end - custom_lstm_start
