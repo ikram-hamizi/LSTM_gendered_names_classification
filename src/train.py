@@ -33,7 +33,8 @@ unique = list(set("".join(train_np[:,0])))
 unique.sort() #len(unique) = 52 (26 lower + 26 UPPER)
 vocab = dict(zip(unique, range(1,len(unique)+1))) #character:index
 
-# Get Matrix of vector representation of names
+# Get Matrix of vector representation of names:
+# Convert the list-of-names data to NumPy arrays of integer indices to be fed to the models. The arrays are post-padded.
 total_train = len(train) #83288
 total_vocab = len(unique)+2 #52+2
 vocab_size = len(vocab) #52
@@ -130,18 +131,6 @@ def name_to_vector(name):
 
   vector = pad_sequences([vector], padding='post', maxlen=name_maxlen)
   return vector
-
-# Convert the list-of-names data to NumPy arrays of integer indices to be fed to the models. The arrays are post-padded.
-total_train = len(train)
-total_test = len(test)
-
-matrix_train_x = np.zeros((total_train, name_maxlen))  
-for i, name in enumerate(x_train):
-  matrix_train_x[i] = name_to_vector(name)
-
-matrix_test_x = np.zeros((total_test, name_maxlen))  
-for i, name in enumerate(x_test):
-  matrix_test_x[i] = name_to_vector(name)
 
 
 import time
