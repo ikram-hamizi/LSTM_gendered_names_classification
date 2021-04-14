@@ -45,25 +45,25 @@ total_vocab = len(vocab)+2 #52+2
 vocab_size = len(vocab)+2#52
 name_maxlen = 15
 
-matrix_train_y = preprocess.data_to_matrix(x_test, total_test, vocab, name_maxlen)
+matrix_test_x = preprocess.data_to_matrix(x_test, total_test, vocab, name_maxlen)
 
 
 model1 = load_model('baselneLSTM.h5')
 print(model1.summary())
 loss1, accuracy1 = model1.evaluate(matrix_test_x, y_test, verbose=0)
-print(f'1) Baseline LSTM NN - Test Accuracy: {accuracy1*100}%')
+print(f'1) Baseline LSTM NN - Test Accuracy: {accuracy1*100}%\n')
 
 
 model2 = load_model('classicFeedFWD.h5')
 print(model2.summary())
 loss2, accuracy2 = model2.evaluate(matrix_test_x, y_test, verbose=0)
-print(f'2) Classic Feed-Forward NN - Test Accuracy: {accuracy2*100}%')
+print(f'2) Classic Feed-Forward NN - Test Accuracy: {accuracy2*100}%\n')
 
 
 model3 = load_model('customLSTM.h5')
 print(model3.summary())
 loss3, accuracy3 = model3.evaluate(matrix_test_x, y_test, verbose=0)
-print(f'3) Best Custom LSTM NN - Test Accuracy: {accuracy3*100}%')
+print(f'3) Best Custom LSTM NN - Test Accuracy: {accuracy3*100}%\n')
 
 
 
