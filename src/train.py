@@ -105,7 +105,7 @@ embedding_layer = Embedding(
 
 
 #C. Building and Training the models (with the best hyperparameters)
-from keras.layers import LSTM, Dense, Dropout, Flatten
+from keras.layers import LSTM, Dense, Dropout, GlobalMaxPooling1D #Flatten
 from keras import Sequential
 from keras.optimizers import Adam
 from keras.losses import BinaryCrossentropy
@@ -178,7 +178,7 @@ model1.save("baselneLSTM.h5")
 # tensorboard = TensorBoard(log_dir='log/{}'.format(MODEL_NAME))
 model2 = Sequential()
 model2.add(embedding_layer)
-model2.add(Flatten())
+model2.add(GlobalMaxPooling1D())
 model2.add(Dense(160, activation='relu'))
 model2.add(Dense(192, activation='relu'))
 model2.add(Dense(160, activation='relu'))
