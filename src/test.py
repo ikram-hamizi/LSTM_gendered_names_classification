@@ -23,15 +23,13 @@ y_test = test['Gender'].values.tolist()
 from sklearn.preprocessing import LabelEncoder
 label_encoder = LabelEncoder()
 
-# intermediate step: get label encodings from training set labels
-# Sort names by length before creating mini-batches to help the model to learn shorter sequences first.
+# Intermediate step: get label encodings from training set labels
+# a. Sort names in training set by length (like train.py)
 s = train.Name.str.len().sort_values().index #Int64Index
 train = train.reindex(s)
-
 y_train = train['Gender'].values.tolist()
+# b. fit encoder to training set and transform testing set
 y_train = np.array(label_encoder.fit_transform(y_train))
-
-label_encoder = LabelEncoder()
 y_test = np.array(label_encoder.transform(y_test))
 
 
@@ -45,18 +43,21 @@ matrix_train_y = preprocess.data_to_matrix(x_test, total_test, vocab, name_maxle
 
 
 model1 = load_model('baselneLSTM.h5')
-loss, accuracy = model1.evaluate(matrix_test_x, y_test, verbose=0)
-print(f'Baseline NN - Accuracy: {accuracy*100}%')
+print(model1.summary())
+loss1, accuracy1 = model1.evaluate(matrix_test_x, y_test, verbose=0)
+print(f'1) Baseline LSTM NN - Test Accuracy: {accuracy1*100}%')
 
 
 model2 = load_model('classicFeedFWD.h5')
-loss, accuracy = model2.evaluate(matrix_test_x, y_test, verbose=0)
-print(f'Classic NN - Accuracy: {accuracy*100}%')
+print(model2.summary())
+loss2, accuracy2 = model2.evaluate(matrix_test_x, y_test, verbose=0)
+print(f'2) Classic Feed-Forward NN - Test Accuracy: {accuracy2*100}%')
 
 
-model2 = load_model('customLSTM.h5')
-loss, accuracy = model3.evaluate(matrix_test_x, y_test, verbose=0)
-print(f'Best Custom NN - Accuracy: {accuracy*100}%')
+model3 = load_model('customLSTM.h5')
+print(model3.summary())
+loss3, accuracy3 = model3.evaluate(matrix_test_x, y_test, verbose=0)
+print(f'3) Best Custom LSTM NN - Test Accuracy: {accuracy3*100}%')
 
 
 
